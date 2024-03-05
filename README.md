@@ -71,4 +71,4 @@ Adicionalmente el archivo `sql_query_2.sql`, en este archivo Script está defini
   <li>Consulta para obtener datos</li>
 </ol>
 
-*-- TechnicalTestEmployee*
+*-- Santiago Nivia*
