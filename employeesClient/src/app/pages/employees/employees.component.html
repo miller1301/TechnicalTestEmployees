@@ -1,0 +1,156 @@
+<div class="main">
+    <div class="table">
+
+        <div class="head">
+            <h1>Empleados</h1>
+        </div>
+
+        <div class="add-employee">
+            <button (click)="showModal = true; actionEmployee = 'crear'" class="btn-primary">+ Crear empleado</button>
+        </div>
+
+        <div class="table-section table-nav">
+            <div class="employee-id">
+                <p>ID</p>
+            </div>
+            <div class="img">
+                <p>FOTO</p>
+            </div>
+            <div class="cedula">
+                <p>CÉDULA</p>
+            </div>
+            <div class="name">
+                <p>NOMBRE</p>
+            </div>
+            <div class="ingreso">
+                <p>FECHA INGRESO</p>
+            </div>
+            <div class="cargo">
+                <p>CARGO</p>
+            </div>
+            <div class="actions">
+                <p>ACCIONES</p>
+            </div>
+        </div>
+
+        <div *ngFor="let employee of employees" class="table-section table-body">
+            <div class="employee-id">
+                <p>{{ employee.id }}</p>
+            </div>
+            <div class="employee">
+                <img [src]="employee.foto" alt="employee-img">
+            </div>
+            <div class="cedula">
+                <p>{{ employee.cedula }}</p>
+            </div>
+            <div class="name">
+                <p>{{ employee.nombre }}</p>
+            </div>
+            <div class="ingreso">
+                <p>{{ employee.fechaIngreso | date:'dd/MM/yyyy' }}</p>
+            </div>
+            <div class="cargo">
+                <p>{{ employee.jobTitleDTO.nombre }}</p>
+            </div>
+            <div class="actions">
+                <span (click)="showModal = true; actionEmployee = 'editar'; employeeActive = employee.id; getEmployee(employee.id); setFormEmployee(employee)" class="edit">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-edit" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" />
+                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" />
+                        <path d="M16 5l3 3" />
+                      </svg>
+                </span>
+
+                <span (click)="showModal = true; actionEmployee = 'eliminar'; employeeActive = employee.id" class="delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x-filled" width="20" height="20" viewBox="0 0 24 24" stroke-width="1.5" stroke="#fff" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M20 6a1 1 0 0 1 .117 1.993l-.117 .007h-.081l-.919 11a3 3 0 0 1 -2.824 2.995l-.176 .005h-8c-1.598 0 -2.904 -1.249 -2.992 -2.75l-.005 -.167l-.923 -11.083h-.08a1 1 0 0 1 -.117 -1.993l.117 -.007h16zm-9.489 5.14a1 1 0 0 0 -1.218 1.567l1.292 1.293l-1.292 1.293l-.083 .094a1 1 0 0 0 1.497 1.32l1.293 -1.292l1.293 1.292l.094 .083a1 1 0 0 0 1.32 -1.497l-1.292 -1.293l1.292 -1.293l.083 -.094a1 1 0 0 0 -1.497 -1.32l-1.293 1.292l-1.293 -1.292l-.094 -.083z" stroke-width="0" fill="currentColor" />
+                        <path d="M14 2a2 2 0 0 1 2 2a1 1 0 0 1 -1.993 .117l-.007 -.117h-4l-.007 .117a1 1 0 0 1 -1.993 -.117a2 2 0 0 1 1.85 -1.995l.15 -.005h4z" stroke-width="0" fill="currentColor" />
+                    </svg>
+                </span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div [ngClass]="showModal ? 'modal-manager' : 'hide-modal'">
+    <div *ngIf="actionEmployee === 'crear' || actionEmployee === 'editar'" class="modal-cu">
+        <div class="modal-head">
+            <p>{{ actionEmployee | titlecase }} empleado</p>
+            <i (click)="showModal = false; this.formEmployee.reset()" class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="modal-body">
+            <form [formGroup]="formEmployee">
+
+                <div class="input-group">
+                    <label>Cédula</label>
+                    <input formControlName="cedula" type="number">
+                </div>
+    
+                <div class="input-group">
+                    <label>Nombre</label>
+                    <input formControlName="nombre" type="text">
+                </div>
+    
+                <div class="input-group">
+                    <label>Fecha Ingreso</label>
+                    <input formControlName="fechaIngreso" type="date">
+                </div>
+    
+                <div class="input-group">
+                    <label>Cargo</label>
+                    <select formControlName="jobTitleId">
+                        <option value="1">Scrum Master</option>
+                        <option value="2">Desarrollador</option>
+                        <option value="3">QA</option>
+                        <option value="4">PO</option>
+                    </select>
+                </div>
+    
+                <div class="input-group">
+                    <label>Foto</label>
+                    <input (change)="onFileSelected($event)" formControlName="foto" type="file">
+                </div>
+
+            </form>
+        </div>
+
+        <div class="modal-footer">
+            <div (click)="showModal = false" class="cancel">
+                <i class="fa-solid fa-xmark"></i>
+                <p (click)="this.formEmployee.reset()">Cancelar</p>
+            </div>
+            <div class="save">
+                <i class="fa-solid fa-check"></i>
+                <p (click)="actionEmployee == 'crear' ? createEmployee() : updateEmployee(employeeActive)">Guardar</p>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="actionEmployee === 'eliminar'" class="modal-delete"> 
+        <div class="modal-head">
+            <p>Confirmar</p>
+            <i (click)="showModal = false" class="fa-solid fa-xmark"></i>
+        </div>
+
+        <div class="modal-body">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <p>¿Estás seguro que quieres eliminar este empleado?</p>
+        </div>
+
+        <div class="modal-footer">
+            <div (click)="showModal = false" class="cancel">
+                <i class="fa-solid fa-xmark"></i>
+                <p>No</p>
+            </div>
+            <div class="save">
+                <i class="fa-solid fa-check"></i>
+                <p (click)="deleteEmployee(employeeActive)">Eliminar</p>
+            </div>
+        </div>
+    </div>
+</div>
+
