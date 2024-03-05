@@ -1,0 +1,59 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+.vs
+
+# Compiled output
+/TaskClient/dist
+/TaskClient/tmp
+/TaskClient/out-tsc
+/TaskClient/bazel-out
+
+# Node
+/TaskClient/node_modules
+/TaskClient/npm-debug.log
+/TaskClient/yarn-error.log
+
+# IDEs and editors
+/TaskClient/.idea/
+/TaskClient/.project
+/TaskClient/.classpath
+/TaskClient/.c9/
+/TaskClient/*.launch
+/TaskClient/.settings/
+/TaskClient/*.sublime-workspace
+
+# Visual Studio Code
+/TaskClient/.vscode/*
+/TaskClient/!.vscode/settings.json
+/TaskClient/!.vscode/tasks.json
+/TaskClient/!.vscode/launch.json
+/TaskClient/!.vscode/extensions.json
+/TaskClient/.history/*
+
+# Miscellaneous
+/TaskClient/.angular/cache
+/TaskClient/.sass-cache/
+/TaskClient/connect.lock
+/TaskClient/coverage
+/TaskClient/libpeerconnection.log
+/TaskClient/testem.log
+/TaskClient/typings
+
+# System files
+/TaskClient/.DS_Store
+/TaskClient/Thumbs.db
+/TaskApi/Task.WebApi/Task.Application/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.WebApi/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.WebApi/obj/Debug/net6.0
+/TaskApi/Task.WebApi/Task.WebApi/obj
+/TaskApi/Task.WebApi/Task.Utilities/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.Utilities/obj
+/TaskApi/Task.WebApi/Task.UnitTest/bin
+/TaskApi/Task.WebApi/Task.UnitTest/obj
+/TaskApi/Task.WebApi/Task.Models/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.Models/obj
+/TaskApi/Task.WebApi/Task.Domain/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.Domain/obj
+/TaskApi/Task.WebApi/Task.DataInfrastructure/bin/Debug/net6.0
+/TaskApi/Task.WebApi/Task.DataInfrastructure/obj
+/TaskApi/Task.WebApi/Task.Application/obj
