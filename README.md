@@ -57,4 +57,18 @@ Se integra el ORM (Object Relational Mapping) Entity Framework, el cual nos ayud
 
 Ejecutar la aplicación para que el cliente pueda recibir las peticiones.
 
+### SQL Query
+En la carpeta "services_NN_SA" de este repositorio se encuentra el diagrama de referencía utilizado para el segundo punto de la prueba que consiste en realizar una solución informática que permita atender las solicitudes de servicios para la empresa "NN S.A".
+
+<img title="MER DB" src="services_NN_SA/MER_SQL_2.jpeg">
+
+Adicionalmente el archivo `sql_query_2.sql`, en este archivo Script está definido lo siguiente:
+
+<ol>
+  <li>Creación de la base de datos</li>
+  <li>Creación de las tablas</li>
+  <li>Inserción de datos de prueba</li>
+  <li>Consulta para obtener datos</li>
+</ol>
+
 *-- TechnicalTestEmployee*
